@@ -2,57 +2,180 @@
 
 Create a REST API to manage a car and motorcycle parking lot.
 
-## Features 🛠️
+## Technologies
+
+### - Entity Framework Core
+### - Entity Framework Core SqlServer
+### - Entity Framework Core Tools
+### - Swagger
+### - Swashbuckle
+
+## Service Calls
 
 ### Company
 
-Create a company registration with the following fields:
+#### GET
+- /api/Company
+  - Retrieves all companies available. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "name": "string",
+    "address": "string",
+    "telephone": "string",
+    "motorcycleSpaces": 0,
+    "carSpaces": 0
+  }
+  ```
+- /api/Company/{id}
+  - Retrieves the company with the provided id. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "name": "string",
+    "address": "string",
+    "telephone": "string",
+    "motorcycleSpaces": 0,
+    "carSpaces": 0
+  }
+  ```
 
-- Name
-- Address
-- Telephone
-- Number of spaces for motorcycles
-- Number of spaces for cars
+  #### POST
+- /api/Company/
+  - Inserts a new company with the given information. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "name": "string",
+    "address": "string",
+    "telephone": "string",
+    "motorcycleSpaces": 0,
+    "carSpaces": 0
+  }
+  ```
+  #### PUT
+- /api/Company/{id}
+  - Updates the company related to the provided ID with the given information. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "name": "string",
+    "address": "string",
+    "telephone": "string",
+    "motorcycleSpaces": 0,
+    "carSpaces": 0
+  }
+  ```
+    #### DELETE
+- /api/Company/{id}
+  - Deletes the company with the provided id. 
 
-\*All fields are required.
+### Vehicle
 
-### Vehicles
+#### GET
+- /api/Vehicle
+  - Retrieves all vehicles available in the parking lot with the provided company ID. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "brand": "string",
+    "model": "string",
+    "color": "string",
+    "plate": "string",
+    "type": "string",
+    "isParked": true,
+    "inputDate": "2024-04-10T17:37:22.015Z",
+    "outputDate": "2024-04-10T17:37:22.015Z",
+    "companyId": 0
+  }
+  ```
+- /api/Vehicle/{id}
+  - Retrieves the vehicle with the provided id. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "brand": "string",
+    "model": "string",
+    "color": "string",
+    "plate": "string",
+    "type": "string",
+    "isParked": true,
+    "inputDate": "2024-04-10T17:37:22.015Z",
+    "outputDate": "2024-04-10T17:37:22.015Z",
+    "companyId": 0
+  }
+  ```
 
-Create a vehicle registration with the following fields:
-
-- Brand
-- Model
-- Color
-- Plate
-- Type
-
-All fields are required.
-
-### Vehicle entry and exit control.
-
-## Requirements 💻
-
--The application must be developed using .NET Core
-
-- Data modeling can be in the database of your choice, which can be a relational or non-relational database (mongodb, SQL Server, PostgreSQL, MySQL, etc.)
-- Data persistence in the database must be done using Entity Framework Core
-- The API return must be in JSON format
-- Use GET, POST, PUT or DELETE requests, according to best practice
-- Create the project's README describing the technologies used, service calls and configurations necessary to run the application
-
-## Extra Points ⭐
-
-- Development based on TDD
-- Project modeling practices
-- Create and configure API Swagger according to best practices
-- Create an API to extract reports from the application with the following information:
-  - Summary of input and output quantity
-  - Summary of the number of vehicles entering and leaving per hour
-- Create an authentication solution
-- Publishing the application on a server
-
-## Test submission 📝
-
-Create a fork of the test so we can follow its development through its commits.
-
-Thank you for participating in the test. Good luck! 😄
+  #### POST
+- /api/Vehicle/
+  - Inserts a new vehicle in the parking lot with the given information. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "brand": "string",
+    "model": "string",
+    "color": "string",
+    "plate": "string",
+    "type": "string",
+    "isParked": true,
+    "inputDate": "2024-04-10T17:37:22.015Z",
+    "outputDate": "2024-04-10T17:37:22.015Z",
+    "companyId": 0
+  }
+  ```
+  #### PUT
+- /api/Vehicle/{id}
+  - Updates the vehicle related to the provided ID with the given information. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "brand": "string",
+    "model": "string",
+    "color": "string",
+    "plate": "string",
+    "type": "string",
+    "isParked": true,
+    "inputDate": "2024-04-10T17:37:22.015Z",
+    "outputDate": "2024-04-10T17:37:22.015Z",
+    "companyId": 0
+  }
+  ```
+  - /api/Vehicle/remove/{id}
+  - Generates a logical delete to the provided vehicle. 
+  Example:
+  ```
+  {
+    "id": 0,
+    "brand": "string",
+    "model": "string",
+    "color": "string",
+    "plate": "string",
+    "type": "string",
+    "isParked": true,
+    "inputDate": "2024-04-10T17:37:22.015Z",
+    "outputDate": "2024-04-10T17:37:22.015Z",
+    "companyId": 0
+  }
+  ```
+    #### DELETE
+- /api/Vehicle/{id}
+  - Deletes the vehicle with the provided id.
+ 
+## Necessary configurations
+### Prior to runnning the project you will need to execute the latest migration file provided, using the Package Manager Console from Visual Studio or the .NET CLI, to generate the necessary database tables.
+- Package Manager Console:
+```
+update-database -target <fileName>
+```
+- .NET CLI:
+```
+dotnet ef database update <fileName>
+```
